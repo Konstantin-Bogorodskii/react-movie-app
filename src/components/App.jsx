@@ -10,6 +10,7 @@ export default class App extends React.Component {
       filters: {
         sort_by: 'popularity.desc',
       },
+      page: 1,
     };
   }
 
@@ -20,8 +21,12 @@ export default class App extends React.Component {
     });
   };
 
+  handlerPageChange = page => {
+    this.setState({ page });
+  };
+
   render() {
-    const { filters } = this.state;
+    const { filters, page } = this.state;
 
     return (
       <div className="container">
@@ -30,12 +35,17 @@ export default class App extends React.Component {
             <div className="card" style={{ width: '100%' }}>
               <div className="card-body">
                 <h3>Фильтры:</h3>
-                <Filters filters={filters} onChangeFilters={this.onChangeFilters} />
+                <Filters
+                  filters={filters}
+                  onChangeFilters={this.onChangeFilters}
+                  page={page}
+                  handlerPageChange={this.handlerPageChange}
+                />
               </div>
             </div>
           </div>
           <div className="col-8">
-            <MoviesList filters={filters} />
+            <MoviesList filters={filters} page={page} handlerPageChange={this.handlerPageChange} />
           </div>
         </div>
       </div>
