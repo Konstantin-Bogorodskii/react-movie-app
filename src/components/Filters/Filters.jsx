@@ -1,10 +1,12 @@
 import React from 'react';
+import Pagiantion from './Pagiantion';
+import PrimaryReleaseYear from './PrimaryReleaseYear';
 import SortBy from './SortBy';
 
 export default class Filters extends React.Component {
   render() {
     const {
-      filters: { sort_by },
+      filters: { sort_by, year },
       onChangeFilters,
       page,
       handlerPageChange,
@@ -13,24 +15,8 @@ export default class Filters extends React.Component {
     return (
       <form className="mb-3">
         <SortBy sort_by={sort_by} onChangeFilters={onChangeFilters} />
-
-        <div className="btn-group">
-          <button
-            type="button"
-            className="btn btn-light"
-            disabled={page === 1}
-            onClick={() => handlerPageChange(page - 1)}
-          >
-            Назад
-          </button>
-          <button
-            type="button"
-            className="btn btn-light"
-            onClick={() => handlerPageChange(page + 1)}
-          >
-            Вперёд
-          </button>
-        </div>
+        <PrimaryReleaseYear year={year} onChangeFilters={onChangeFilters} />
+        <Pagiantion handlerPageChange={handlerPageChange} page={page} />
       </form>
     );
   }

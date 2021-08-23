@@ -9,8 +9,10 @@ export default class App extends React.Component {
     this.state = {
       filters: {
         sort_by: 'popularity.desc',
+        year: '2021-07-28',
       },
       page: 1,
+      pagesCount: null,
     };
   }
 
@@ -26,8 +28,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { filters, page } = this.state;
-
+    const { filters, page, pagesCount } = this.state;
     return (
       <div className="container">
         <div className="row mt-4">
@@ -45,7 +46,12 @@ export default class App extends React.Component {
             </div>
           </div>
           <div className="col-8">
-            <MoviesList filters={filters} page={page} handlerPageChange={this.handlerPageChange} />
+            <MoviesList
+              filters={filters}
+              page={page}
+              handlerPageChange={this.handlerPageChange}
+              pagesCount={pagesCount}
+            />
           </div>
         </div>
       </div>

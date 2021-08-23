@@ -12,8 +12,8 @@ export default class MovieList extends Component {
   }
 
   getMovies = (filters, page) => {
-    const { sort_by } = filters;
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru-RU&sort_by=${sort_by}&page=${page}`;
+    const { sort_by, year } = filters;
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru-RU&sort_by=${sort_by}&page=${page}&primary_release_year=${year}`;
     fetch(link)
       .then(response => {
         return response.json();
@@ -24,7 +24,6 @@ export default class MovieList extends Component {
         });
       });
   };
-
   componentDidMount() {
     this.getMovies(this.props.filters);
   }
@@ -37,6 +36,11 @@ export default class MovieList extends Component {
 
     if (this.props.page !== prevProps.page) {
       this.getMovies(this.props.filters, this.props.page);
+    }
+
+    if (this.props.filters.year !== prevProps.filters.year) {
+      this.getMovies(this.props.filters, 1);
+      this.props.handlerPageChange(1);
     }
   }
 
