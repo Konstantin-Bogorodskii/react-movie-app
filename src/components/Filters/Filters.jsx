@@ -10,13 +10,14 @@ export default class Filters extends React.Component {
       onChangeFilters,
       page,
       handlerPageChange,
+      total_pages,
     } = this.props;
 
     return (
       <form className="mb-3">
         <SortBy sort_by={sort_by} onChangeFilters={onChangeFilters} />
         <PrimaryReleaseYear year={year} onChangeFilters={onChangeFilters} />
-        <Pagiantion handlerPageChange={handlerPageChange} page={page} />
+        <Pagiantion handlerPageChange={handlerPageChange} page={page} total_pages={total_pages} />
       </form>
     );
   }

@@ -19,11 +19,15 @@ export default class MovieList extends Component {
         return response.json();
       })
       .then(data => {
+        console.log(data);
         this.setState({
           movies: data.results,
         });
+
+        this.props.setTotalPages(data.total_pages);
       });
   };
+
   componentDidMount() {
     this.getMovies(this.props.filters);
   }

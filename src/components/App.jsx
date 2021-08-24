@@ -12,7 +12,7 @@ export default class App extends React.Component {
         year: '2021-07-28',
       },
       page: 1,
-      pagesCount: null,
+      total_pages: '',
     };
   }
 
@@ -27,8 +27,12 @@ export default class App extends React.Component {
     this.setState({ page });
   };
 
+  setTotalPages = total_pages => {
+    this.setState({ total_pages });
+  };
+
   render() {
-    const { filters, page, pagesCount } = this.state;
+    const { filters, page, total_pages } = this.state;
     return (
       <div className="container">
         <div className="row mt-4">
@@ -41,6 +45,7 @@ export default class App extends React.Component {
                   onChangeFilters={this.onChangeFilters}
                   page={page}
                   handlerPageChange={this.handlerPageChange}
+                  total_pages={total_pages}
                 />
               </div>
             </div>
@@ -50,7 +55,7 @@ export default class App extends React.Component {
               filters={filters}
               page={page}
               handlerPageChange={this.handlerPageChange}
-              pagesCount={pagesCount}
+              setTotalPages={this.setTotalPages}
             />
           </div>
         </div>

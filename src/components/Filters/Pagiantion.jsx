@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Pagiantion extends Component {
   render() {
-    const { page, handlerPageChange } = this.props;
+    const { page, handlerPageChange, total_pages } = this.props;
     return (
       <>
         <div className="btn-group">
@@ -22,7 +22,9 @@ class Pagiantion extends Component {
             Вперёд
           </button>
         </div>
-        <div>{page} из 1000 </div>
+        <div style={{ fontSize: '20px', color: 'lightblue' }}>
+          {page} из {total_pages}{' '}
+        </div>
       </>
     );
   }
