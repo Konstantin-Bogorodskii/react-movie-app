@@ -9,7 +9,8 @@ export default class App extends React.Component {
     this.state = {
       filters: {
         sort_by: 'popularity.desc',
-        year: '2021-07-28',
+        year: new Date().getFullYear(),
+        with_genres: [],
       },
       page: 1,
       total_pages: '',
@@ -21,6 +22,34 @@ export default class App extends React.Component {
     this.setState({
       filters: newFilters,
     });
+  };
+
+  onChangeGenres = list => {
+    this.setState(state => ({
+      filters: {
+        ...state.filters,
+        with_genres: list,
+      },
+    }));
+  };
+
+  onChangeGenre = event => {
+    const id = event.target.value;
+    const { with_genres } = this.state.filters;
+    let newGenres = [];
+
+    if (with_genres.includes(id)) {
+      newGenres.filter(el => el !== id);
+    } else {
+      newGenres = [...with_genres, id];
+    }
+
+    this.setState(state => ({
+      filters: {
+        ...state.filters,
+        with_genres: newGenres,
+      },
+    }));
   };
 
   handlerPageChange = page => {
@@ -46,6 +75,8 @@ export default class App extends React.Component {
                   page={page}
                   handlerPageChange={this.handlerPageChange}
                   total_pages={total_pages}
+                  onChangeGenre={this.onChangeGenre}
+                  onChangeGenres={this.onChangeGenres}
                 />
               </div>
             </div>

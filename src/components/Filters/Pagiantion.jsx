@@ -17,6 +17,7 @@ class Pagiantion extends Component {
           <button
             type="button"
             className="btn btn-light"
+            disabled={page === total_pages}
             onClick={() => handlerPageChange(page + 1)}
           >
             Вперёд

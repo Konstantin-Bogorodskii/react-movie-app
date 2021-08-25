@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class PrimaryReleaseYear extends Component {
   static propTypes = {
     onChangeFilters: PropTypes.func.isRequired,
-    year: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
