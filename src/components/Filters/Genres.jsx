@@ -26,7 +26,7 @@ class Genres extends Component {
   };
 
   render() {
-    const { genresList, onChangeGenre, onChangeGenres, with_genres } = this.props;
+    const { genresList, onChangeGenre } = this.props;
 
     return (
       <div className="form-group">
