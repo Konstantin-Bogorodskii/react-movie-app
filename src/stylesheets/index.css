@@ -2,6 +2,10 @@ body {
   background: #fdfdfd;
 }
 
+.invalid-feedback {
+  display: block;
+}
+
 .card-img--height {
   height: 200px;
   object-fit: cover;
